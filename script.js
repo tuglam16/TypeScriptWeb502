@@ -1,6 +1,8 @@
-function CvHCN(dai, rong) {
-    return (dai + rong) * 2;
+function hinhChuNhat(dai, rong) {
+    var chuVi = 2 * (dai + rong);
+    var dienTich = dai * rong;
+    return { chuVi: chuVi, dienTich: dienTich };
 }
-var dai = 10;
-var rong = 5;
-console.log("chu vi hinh chu nhat: ", CvHCN(dai, rong));
+var kq = hinhChuNhat(10, 5);
+console.log("Chu vi:", kq.chuVi);
+console.log("Diện tích:", kq.dienTich);
