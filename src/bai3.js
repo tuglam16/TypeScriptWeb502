@@ -1,11 +1,13 @@
 function countChar(str, char) {
+    var lowerStr = str.toLowerCase();
+    var lowerChar = char.toLowerCase();
     var count = 0;
-    for (var _i = 0, str_1 = str; _i < str_1.length; _i++) {
-        var c = str_1[_i];
-        if (c === char)
+    for (var i = 0; i < lowerStr.length; i++) {
+        if (lowerStr[i] === lowerChar) {
             count++;
+        }
     }
     return count;
 }
-console.log(countChar("hello world", "o"));
-console.log(countChar("typescript", "t"));
+console.log(countChar("Hello World", "l"));
+console.log(countChar("Hello World", "L"));
