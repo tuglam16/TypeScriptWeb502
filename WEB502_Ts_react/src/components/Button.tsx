@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 
-interface ColorButtonProps {
-  label: string;                 // text hiển thị trên nút
-  color?: string;                // màu được truyền vào
-  onClick?: () => void;          // hàm callback khi click (optional)
+interface ButtonProps {
+  text: string;
+  color?: string; // optional
 }
 
-const getRandomColor = () => {
-  const colors = ["red", "green", "blue", "purple", "orange", "pink"];
-  return colors[Math.floor(Math.random() * colors.length)];
-};
+const Button: React.FC<ButtonProps> = ({ text, color }) => {
+  const [bgColor, setBgColor] = useState<string>(color || "gray");
 
-const ColorButton = ({ label, color, onClick }: ColorButtonProps) => {
-  const [btnColor, setBtnColor] = useState<string>(color || getRandomColor());
+  // Hàm random mã màu HEX
+  const randomHexColor = () => {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+  };
 
   const handleClick = () => {
-    if (!color) {
-      setBtnColor(getRandomColor());  // nếu không truyền color → random khi click
-    }
-    if (onClick) {
-      onClick(); // chạy thêm callback nếu có
+    if (color) {
+      setBgColor(color); // nếu truyền thì giữ màu đó
+    } else {
+      setBgColor(randomHexColor()); // nếu không thì random hex
     }
   };
 
@@ -27,17 +25,17 @@ const ColorButton = ({ label, color, onClick }: ColorButtonProps) => {
     <button
       onClick={handleClick}
       style={{
-        backgroundColor: btnColor,
+        backgroundColor: bgColor,
         color: "white",
-        padding: "8px 16px",
+        padding: "10px 20px",
         border: "none",
-        borderRadius: "6px",
+        borderRadius: "8px",
         cursor: "pointer",
       }}
     >
-      {label}
+      {text}
     </button>
   );
 };
 
-export default ColorButton;
+export default Button;

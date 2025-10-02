@@ -1,21 +1,16 @@
 import React from "react";
-import ColorButton from "./components/Button";
+import Button from "./components/Button";
 
 function App() {
   return (
-    <div style={{ padding: "20px" }}>
-      {/* Giữ nguyên màu*/}
-      <ColorButton label="Button" color="pink" />
+    <> 
+    {/* // Truyền màu cố định */}
+      <Button text="Submit" color="#1E90FF" />
 
-      {/* Random màu khi click */}
-      <ColorButton label="Random Button" />
+    {/* // Không truyền -> click đổi random hex */}
+      <Button text="Random Color" />
 
-      {/* Random màu + có callback */}
-      <ColorButton 
-        label="Click Me" 
-        onClick={() => alert("Button clicked!")} 
-      />
-    </div>
+    </>
   );
 }
 
