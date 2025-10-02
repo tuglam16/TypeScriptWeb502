@@ -3,9 +3,10 @@ import React, { useState } from "react";
 interface ButtonProps {
   text: string;
   color?: string; // optional
+  onClick?: ()=> void;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, color }) => {
+const Button: React.FC<ButtonProps> = ({ text, color ,onClick }) => {
   const [bgColor, setBgColor] = useState<string>(color || "gray");
 
   // Hàm random mã màu HEX
@@ -18,6 +19,10 @@ const Button: React.FC<ButtonProps> = ({ text, color }) => {
       setBgColor(color); // nếu truyền thì giữ màu đó
     } else {
       setBgColor(randomHexColor()); // nếu không thì random hex
+    }
+
+    if (onClick) {
+      onClick();
     }
   };
 

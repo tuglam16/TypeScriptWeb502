@@ -1,15 +1,15 @@
 import React from "react";
 import Button from "./components/Button";
+import MyUseState from "./components/MyUseState";
 
 function App() {
   return (
     <> 
-    {/* // Truyền màu cố định */}
-      <Button text="Submit" color="#1E90FF" />
+      {/* <Button text="Submit" color="#4a6e93ff" /> */}
 
-    {/* // Không truyền -> click đổi random hex */}
-      <Button text="Random Color" />
-
+      {/* // Không truyền -> click đổi random hex */}
+      {/* <Button text="Random Color" /> */}
+    <MyUseState/>
     </>
   );
 }
