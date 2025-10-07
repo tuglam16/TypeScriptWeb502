@@ -1,9 +1,10 @@
-import React from "react";
-import Button from "./components/Button";
-import MyUseState from "./components/MyUseState";
+// import React from "react";
+// import Button from "./components/Button";
+// import MyUseState from "./components/MyUseState";
 import { Route, Router, Routes } from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
+import Users from "./components/Users";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/useeffect" element={<Users />} />
       </Routes>
 
     </>
