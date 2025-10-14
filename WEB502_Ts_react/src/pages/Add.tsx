@@ -1,86 +1,102 @@
-function Add() {
-  return (
-    <div>
-      <h1>Thêm mới</h1>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="text" className="form-label">
-            Text
-          </label>
-          <input type="text" className="form-control" id="text" />
-        </div>
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+interface IProduct {
+  id?: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}
+export default function Add() {
+  const { register, handleSubmit,watch, formState: { errors } } = useForm<IProduct>();
+  const navigate = useNavigate();
 
-        <div className="mb-3">
-          <label htmlFor="radio" className="form-label">
-            Radio
-          </label>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="flexCheck1"
-            />
-            <label className="form-check-label" htmlFor="flexCheck1">
-              checkbox 1
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="flexCheck2"
-            />
-            <label className="form-check-label" htmlFor="flexCheck2">
-              checkbox 2
-            </label>
-          </div>
-        </div>
+  const onSubmit = async (data: IProduct) => {
+    await axios.post("http://localhost:3000/products", data);
+    alert("Thêm sản phẩm thành công!");
+    navigate("/admin/list");
+  };
 
-        <div className="mb-3">
-          <label htmlFor="radio" className="form-label">
-            Checkbox
-          </label>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio1"
-            />
-            <label className="form-check-label" htmlFor="flexRadio1">
-              Checkbox 1
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio2"
-            />
-            <label className="form-check-label" htmlFor="flexRadio2">
-              Checkbox 2
-            </label>
-          </div>
+return (
+    <div className="container mt-4">
+      <div className="card shadow-sm">
+        <div className="card-header bg-primary text-white">
+          <h4 className="mb-0">Thêm sản phẩm mới</h4>
         </div>
+        <div className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Tên sản phẩm */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Tên sản phẩm</label>
+              <input
+                {...register("title", { required: "Vui lòng nhập tên sản phẩm" })}
+                type="text"
+                className="form-control"
+                placeholder="Nhập tên sản phẩm"
+              />
+              {errors.title && <div className="text-danger small">{errors.title.message}</div>}
+            </div>
 
-        <div className="mb-3">
-          <label htmlFor="selectOption" className="form-label">
-            Select - option
-          </label>
-          <select className="form-select">
-            <option value={1}>One</option>
-            <option value={2}>Two</option>
-            <option value={3}>Three</option>
-          </select>
+            {/* Mô tả */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Mô tả</label>
+              <textarea
+                {...register("description", { required: "Vui lòng nhập mô tả" })}
+                className="form-control"
+                rows={3}
+                placeholder="Nhập mô tả sản phẩm"
+              ></textarea>
+              {errors.description && <div className="text-danger small">{errors.description.message}</div>}
+            </div>
+
+            {/* Giá */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Giá (VNĐ)</label>
+              <input
+                {...register("price", {
+                  required: "Vui lòng nhập giá",
+                  min: { value: 1, message: "Giá phải lớn hơn 0" },
+                })}
+                type="number"
+                className="form-control"
+                placeholder="Nhập giá sản phẩm"
+              />
+              {errors.price && <div className="text-danger small">{errors.price.message}</div>}
+            </div>
+
+            {/* Ảnh */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Link ảnh</label>
+              <input
+                {...register("image", { required: "Vui lòng nhập link ảnh" })}
+                type="text"
+                className="form-control"
+                placeholder="https://..."
+              />
+              {errors.image && <div className="text-danger small">{errors.image.message}</div>}
+            </div>
+
+            {/* Preview ảnh */}
+            <div className="text-center mb-3">
+              <img
+                src={
+                  watch("image") ||
+                  "https://via.placeholder.com/150x150.png?text=Preview"
+                }
+                alt="Preview"
+                className="img-thumbnail"
+                style={{ width: 150, height: 150 }}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary w-100">
+              Thêm sản phẩm
+            </button>
+          </form>
         </div>
-
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
-
-export default Add;

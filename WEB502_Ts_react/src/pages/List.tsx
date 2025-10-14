@@ -1,10 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 interface IProduct {
   id: number;
-  name: string;
+  title: string;
   image: string;
   price: number;
   description: string;
@@ -51,17 +52,18 @@ function List() {
             return (
               <tr key={index}>
                 <th scope="row">{item.id}</th>
-                <td>{item.name}</td>
+                <td>{item.title}</td>
                 <td>
                   <img src={item.image} width={100} />
                 </td>
                 <td>{item.price}</td>
                 <td>
-                  <button onClick={() => handleDelete(item.id)}>Delete</button>
+                  <button onClick={() => handleDelete(item.id)} className="btn btn-sm btn-danger me-2">Delete</button>
+                  <Link to={`/admin/edit/${item.id}`}><button className="btn btn-sm btn-warning text-white">Edit </button></Link>
                 </td>
               </tr>
             );
-          })}
+          })} 
         </tbody>
       </table>
     </div>
