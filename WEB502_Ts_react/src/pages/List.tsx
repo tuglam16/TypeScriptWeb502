@@ -37,6 +37,7 @@ function List() {
   return (
     <div>
       <h1>Danh sách</h1>
+      <Link to="/admin/add" className="btn btn-success mb-3">+ Thêm sản phẩm</Link>
       <table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>

@@ -37,7 +37,7 @@ return (
     {/* Navbar */}
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
     <div className="container-fluid">
-        <a className="navbar-brand" href="/">Trang chủ</a>
+        <a className="navbar-brand" href="/">List Sản Phẩm</a>
         <form
         className="d-flex"
         onSubmit={(e) => {
@@ -75,7 +75,7 @@ return (
                 <p className="card-text">
                 {item.description?.slice(0, 50)}...
                 </p>
-                <Link to={`/products/${item.id}`} className="btn btn-primary me-2">
+                <Link to={`/${item.id}`} className="btn btn-primary me-2">
                 Mua ngay
                 </Link>
                 <button className="btn btn-outline-success">Add cart</button>

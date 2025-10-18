@@ -10,9 +10,9 @@ import Edit from "./pages/Edit";
 import Add from "./pages/Add";
 import List from "./pages/List";
 import AdminLayout from "./layout/AdminLayout";
-import Home from "./pages/Home";
 import ClientLayout from "./layout/ClientLayout";
 import ProductList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
 
 
 function App() {
@@ -25,10 +25,10 @@ function App() {
      <Routes>
         {/* Client Layout */}
         <Route path="/" element={<ClientLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<ProductList />} />
           <Route path="users" element={<Users />} />
           <Route path="products" element={<ProductList />} />
-          <Route path="products/:id" element={<ProductList />} />
+          <Route path="/:id" element={<ProductDetail />} />
         </Route>
 
         {/* Admin Layout */}
