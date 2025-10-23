@@ -35,9 +35,9 @@ const totalPages = Math.ceil(total / limit);
 return (
 <div>
     {/* Navbar */}
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark ">
     <div className="container-fluid">
-        <a className="navbar-brand" href="/">List Sản Phẩm</a>
+        <a className="navbar-brand " href="#">List Sản Phẩm</a>
         <form
         className="d-flex"
         onSubmit={(e) => {

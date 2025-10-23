@@ -1,0 +1,12 @@
+{
+    "courses":[
+        {
+  "id": "1",
+  "courseName": "JS Cơ bản",
+  "views": 20,
+  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Javascript.jpg",
+  "note": "none",
+  "category": "Javascript"
+}
+    ]
+}

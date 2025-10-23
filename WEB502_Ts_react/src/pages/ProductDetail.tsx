@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
 interface Product {
-id: number;
-title: string;
-description: string;
-image: string;
+    id: number;
+    title: string;
+    description: string;
+    image: string;
 }
 
 const ProductDetail: React.FC = () => {
