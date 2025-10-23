@@ -62,7 +62,7 @@ function App() {
          <Routes>
               <Route path="/courses" element={<List />}></Route>
               <Route path="/courses/create" element={<Add />}></Route>
-              <Route path="/courses/:id/update" element={<Edit />}></Route>
+              <Route path="/courses/update/:id" element={<Edit />}></Route>
             </Routes>
       </div>
       <Toaster/>

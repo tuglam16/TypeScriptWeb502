@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { id } from "zod/locales";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 interface Course{
   id:string;
   courseName:String
@@ -18,9 +19,9 @@ getAll()
 
   const deleteCourse = async(id:string)=>{
     if(window.confirm("dong y xoa")){
-
-      await axios.delete("http://localhost:3000/courses"+id)
+      await axios.delete(`http://localhost:3000/courses/${id}`)
       setCourses(courses.filter(item => item.id !== id))
+      toast.success("xoa thanh cong")
     }
   }
   return (
@@ -29,17 +30,17 @@ getAll()
       <table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">First</th>
+            <th scope="col">CoursesName</th>
             <th scope="col">Handle</th>
           </tr>
         </thead>
         <tbody>
           {courses.map((item)=>(
             <tr key={item.id}>
-            <th scope="row">{item.id}</th>
             <td>{item.courseName}</td>
-            <td><button onClick={()=>deleteCourse(item.id)}>Delete</button></td>
+            <td><button onClick={()=>deleteCourse(item.id)}>Delete</button>
+              <Link to={`/courses/update/${item.id}`}><button>sua</button></Link>
+            </td>
             </tr>
           ))}
         </tbody>
